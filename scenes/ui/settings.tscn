@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmom4etxgihl4"]
+
+[ext_resource type="Script" path="res://scenes/ui/settings.gd" id="1_s8oix"]
+
+[node name="settings" type="Popup"]
+visible = true
+script = ExtResource("1_s8oix")

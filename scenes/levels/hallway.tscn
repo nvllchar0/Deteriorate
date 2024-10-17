@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2kun1dhxj6fe"]
+
+[ext_resource type="Script" path="res://scenes/levels/hallway.gd" id="1_33f23"]
+[ext_resource type="Texture2D" uid="uid://bg0yfo6lfyvf8" path="res://resources/backgrounds/hallway_bg.png" id="2_muvme"]
+[ext_resource type="PackedScene" uid="uid://cvdny0l34lhyb" path="res://objects/player.tscn" id="3_re6xe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0sh4"]
+size = Vector2(32, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yonhn"]
+size = Vector2(32, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucgce"]
+size = Vector2(43, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpdi3"]
+size = Vector2(42, 186)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dp2ry"]
+size = Vector2(205, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyh3i"]
+size = Vector2(394, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kew8t"]
+size = Vector2(120, 37)
+
+[node name="Hallway" type="Node2D"]
+script = ExtResource("1_33f23")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 90)
+
+[node name="HallwayBg" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_muvme")
+
+[node name="LivingRoom" type="Area2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/LivingRoom"]
+position = Vector2(-181, -41)
+shape = SubResource("RectangleShape2D_g0sh4")
+
+[node name="Bedroom" type="Area2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Bedroom"]
+position = Vector2(59, -41)
+shape = SubResource("RectangleShape2D_yonhn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(218.5, -2)
+shape = SubResource("RectangleShape2D_ucgce")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-219, 2)
+shape = SubResource("RectangleShape2D_bpdi3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-60.5, -42)
+shape = SubResource("RectangleShape2D_dp2ry")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 75.5)
+shape = SubResource("RectangleShape2D_fyh3i")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(136, -42.5)
+shape = SubResource("RectangleShape2D_kew8t")
+
+[node name="Player" parent="." instance=ExtResource("3_re6xe")]
+position = Vector2(-26, 105)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = -240
+limit_top = 0
+limit_right = 240
+limit_bottom = 180
+
+[node name="BedroomPos" type="Marker2D" parent="."]
+position = Vector2(60, 78)
+
+[connection signal="body_entered" from="StaticBody2D/LivingRoom" to="." method="_on_living_room_body_entered"]
+[connection signal="body_entered" from="StaticBody2D/Bedroom" to="." method="_on_bedroom_body_entered"]

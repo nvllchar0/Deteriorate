@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmhtkvpdtfdsl"]
+
+[ext_resource type="Script" path="res://scenes/ui/startup_screen.gd" id="1_1swno"]
+[ext_resource type="FontFile" uid="uid://hh5ohhephv00" path="res://fonts/valium.ttf" id="3_6mw47"]
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="3_gvwjt"]
+[ext_resource type="Texture2D" uid="uid://ckacp421v4nge" path="res://resources/backgrounds/title_bg.png" id="4_dil70"]
+[ext_resource type="Texture2D" uid="uid://bm6wfwrpvi6xf" path="res://resources/backgrounds/title_static.png" id="5_ya2r3"]
+[ext_resource type="Shader" path="res://shaders/crt.gdshader" id="6_775tk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2dje"]
+shader = ExtResource("3_gvwjt")
+shader_parameter/speed = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8xmkq"]
+shader = ExtResource("6_775tk")
+
+[node name="startup screen" type="Node2D"]
+position = Vector2(124, 100)
+script = ExtResource("1_1swno")
+
+[node name="Pattern" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_n2dje")
+offset_left = -124.0
+offset_top = -100.0
+offset_right = 116.0
+offset_bottom = 80.0
+texture = ExtResource("4_dil70")
+expand_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, -9.99999)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_ya2r3")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="CRT_Shader" type="ColorRect" parent="CanvasModulate"]
+material = SubResource("ShaderMaterial_8xmkq")
+offset_left = -124.0
+offset_top = -100.0
+offset_right = 116.0
+offset_bottom = 80.0
+
+[node name="Button_manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 54.0
+offset_top = -46.0
+offset_right = 107.0
+offset_bottom = 58.0
+
+[node name="Start" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 49.0
+offset_bottom = 19.0
+pivot_offset = Vector2(72.8965, 28.485)
+theme_override_fonts/font = ExtResource("3_6mw47")
+theme_override_font_sizes/font_size = 60
+flat = true
+
+[node name="Settings" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 29.0
+offset_right = 50.0
+offset_bottom = 47.0
+pivot_offset = Vector2(113, 28)
+theme_override_fonts/font = ExtResource("3_6mw47")
+theme_override_font_sizes/font_size = 60
+flat = true
+
+[node name="Credits" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 57.0
+offset_right = 50.0
+offset_bottom = 74.0
+pivot_offset = Vector2(98, 28)
+theme_override_fonts/font = ExtResource("3_6mw47")
+theme_override_font_sizes/font_size = 60
+flat = true
+
+[node name="Exit" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 84.0
+offset_right = 51.0
+offset_bottom = 101.0
+pivot_offset = Vector2(54, 28)
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("3_6mw47")
+theme_override_font_sizes/font_size = 60
+flat = true
+
+[connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button_manager/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Button_manager/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Button_manager/Exit" to="." method="_on_exit_pressed"]

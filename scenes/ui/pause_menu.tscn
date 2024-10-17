@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://gbkrb4af0pcu"]
+
+[ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_kej4f"]
+
+[node name="pause_menu" type="Popup"]
+visible = true
+script = ExtResource("1_kej4f")

@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://ch5gy05rpcveo"]
+
+[ext_resource type="Script" path="res://scenes/levels/bedroom.gd" id="1_hq6ww"]
+[ext_resource type="Texture2D" uid="uid://b65aey8efmeig" path="res://resources/backgrounds/bedroom_bg.png" id="2_phcd1"]
+[ext_resource type="Texture2D" uid="uid://daxt4qufywt0n" path="res://resources/objects/bookshelf.png" id="3_kevod"]
+[ext_resource type="Script" path="res://scenes/levels/Bookshelf.gd" id="3_mqls8"]
+[ext_resource type="PackedScene" uid="uid://cvdny0l34lhyb" path="res://objects/player.tscn" id="4_jd5gd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vq5m"]
+size = Vector2(181, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0r2hs"]
+size = Vector2(20, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkfl3"]
+size = Vector2(138, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4u2ku"]
+size = Vector2(20, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4kj0"]
+size = Vector2(30, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1no4i"]
+size = Vector2(28, 39)
+
+[node name="Bedroom" type="Node2D"]
+script = ExtResource("1_hq6ww")
+
+[node name="RoomCollisions" type="StaticBody2D" parent="."]
+
+[node name="BedroomBg" type="Sprite2D" parent="RoomCollisions"]
+position = Vector2(120, 90)
+texture = ExtResource("2_phcd1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomCollisions"]
+position = Vector2(118.5, 46)
+shape = SubResource("RectangleShape2D_3vq5m")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RoomCollisions"]
+position = Vector2(33, 124)
+shape = SubResource("RectangleShape2D_0r2hs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="RoomCollisions"]
+position = Vector2(144, 166.5)
+shape = SubResource("RectangleShape2D_mkfl3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="RoomCollisions"]
+position = Vector2(207, 107)
+shape = SubResource("RectangleShape2D_4u2ku")
+
+[node name="Hallway" type="Area2D" parent="RoomCollisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomCollisions/Hallway"]
+position = Vector2(59, 172)
+shape = SubResource("RectangleShape2D_c4kj0")
+
+[node name="Bookshelf" type="StaticBody2D" parent="."]
+script = ExtResource("3_mqls8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bookshelf"]
+position = Vector2(182, 65)
+texture = ExtResource("3_kevod")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelf"]
+position = Vector2(182, 62.5)
+shape = SubResource("RectangleShape2D_1no4i")
+
+[node name="Player" parent="." instance=ExtResource("4_jd5gd")]
+position = Vector2(70, 105)
+
+[node name="HallwayPos" type="Marker2D" parent="."]
+position = Vector2(58, 154)
+
+[connection signal="body_entered" from="RoomCollisions/Hallway" to="." method="_on_hallway_body_entered"]
