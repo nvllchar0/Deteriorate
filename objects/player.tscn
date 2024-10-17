@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cvdny0l34lhyb"]
+[gd_scene load_steps=29 format=3 uid="uid://cvdny0l34lhyb"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_7o2gm"]
 [ext_resource type="Texture2D" uid="uid://blisd201lrslp" path="res://resources/player/rioma.png" id="2_2owim"]
@@ -20,6 +20,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_hpbrj"]
 resource_name = "idle_down"
@@ -35,6 +47,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.71239]
 }
 
 [sub_resource type="Animation" id="Animation_ftslj"]
@@ -52,6 +76,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [9]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_hi5j4"]
 resource_name = "idle_right"
@@ -67,6 +103,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
 }
 
 [sub_resource type="Animation" id="Animation_jfw7h"]
@@ -84,6 +132,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [5]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_6ih8a"]
 resource_name = "move_down"
@@ -99,6 +159,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.71239]
 }
 
 [sub_resource type="Animation" id="Animation_5m36r"]
@@ -116,6 +188,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [8, 9, 10, 11]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_bwhrv"]
 resource_name = "move_right"
@@ -132,6 +216,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [12, 13, 14, 15]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
 
 [sub_resource type="Animation" id="Animation_h1dp6"]
 resource_name = "move_up"
@@ -147,6 +243,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Direction:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fy8o8"]
@@ -224,6 +332,9 @@ states/Move/position = Vector2(413, 78)
 states/Start/position = Vector2(124, 78)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_4q21m"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_8v0ut"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_6tphx")]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_aco2g"]
+radius = 9.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_7o2gm")
 
@@ -232,11 +343,11 @@ texture = ExtResource("2_2owim")
 hframes = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_467vc")
 
 [node name="Interact" type="Timer" parent="."]
-wait_time = 0.25
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -250,7 +361,19 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_7ybcc")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(-0.652476, -0.216931)
 parameters/Move/blend_position = Vector2(0, 0)
+
+[node name="Direction" type="Marker2D" parent="."]
+position = Vector2(0, 3)
+
+[node name="ActionableFinder" type="Area2D" parent="Direction"]
+position = Vector2(0, 3)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionableFinder"]
+position = Vector2(-8, -3)
+shape = SubResource("CircleShape2D_aco2g")
 
 [connection signal="timeout" from="Interact" to="." method="_on_interact_timeout"]

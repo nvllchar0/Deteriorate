@@ -8,6 +8,8 @@ var current_dir = "none"
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
+@onready var actionable_finder: Area2D = $Direction/ActionableFinder
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,24 +37,31 @@ func _process(_delta):
 	
 	move_and_slide()
 	
-	
+
 	if(Input.is_action_just_pressed("inv")):
 		print("Inventory")	
 		
 	if(Input.is_action_pressed("sprint")):
 		velocity = direction * 100
 		move_and_slide()
-		
+
+func _unhandled_input(_event: InputEvent):
+			
 	if(Input.is_action_just_pressed("pause")):
 		print("pause")
 		get_tree().change_scene_to_file("res://scenes/pause_menu.tscn")
 		
 	if(Input.is_action_just_pressed("interact") and can_interact):
-		print("Interact")	
-		can_interact = false
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
+			can_interact = false
+			return
+
+		
 		$Interact.start()
 	
-		
+
 		
 
 func _on_interact_timeout():
