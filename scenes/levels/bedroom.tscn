@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch5gy05rpcveo"]
+[gd_scene load_steps=16 format=3 uid="uid://ch5gy05rpcveo"]
 
 [ext_resource type="Script" path="res://scenes/levels/bedroom.gd" id="1_hq6ww"]
 [ext_resource type="Texture2D" uid="uid://b65aey8efmeig" path="res://resources/backgrounds/bedroom_bg.png" id="2_phcd1"]
+[ext_resource type="Script" path="res://scenes/levels/Hallway.gd" id="3_2vayt"]
 [ext_resource type="Texture2D" uid="uid://daxt4qufywt0n" path="res://resources/objects/bookshelf.png" id="3_kevod"]
-[ext_resource type="Script" path="res://scenes/levels/Bookshelf.gd" id="3_mqls8"]
 [ext_resource type="PackedScene" uid="uid://cvdny0l34lhyb" path="res://objects/player.tscn" id="4_jd5gd"]
+[ext_resource type="PackedScene" uid="uid://cn32y4s4bqa1p" path="res://helpers/actionable.tscn" id="4_ks3s2"]
+[ext_resource type="Resource" uid="uid://d2l4k6xfxw0pb" path="res://dialogue/main.dialogue" id="5_4lqxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vq5m"]
 size = Vector2(181, 40)
@@ -21,8 +23,25 @@ size = Vector2(20, 82)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c4kj0"]
 size = Vector2(30, 16)
 
+[sub_resource type="GDScript" id="GDScript_2mj6i"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1no4i"]
 size = Vector2(28, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vircn"]
+size = Vector2(34, 48)
 
 [node name="Bedroom" type="Node2D"]
 script = ExtResource("1_hq6ww")
@@ -50,13 +69,14 @@ position = Vector2(207, 107)
 shape = SubResource("RectangleShape2D_4u2ku")
 
 [node name="Hallway" type="Area2D" parent="RoomCollisions"]
+script = ExtResource("3_2vayt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomCollisions/Hallway"]
 position = Vector2(59, 172)
 shape = SubResource("RectangleShape2D_c4kj0")
 
 [node name="Bookshelf" type="StaticBody2D" parent="."]
-script = ExtResource("3_mqls8")
+script = SubResource("GDScript_2mj6i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bookshelf"]
 position = Vector2(182, 65)
@@ -65,6 +85,13 @@ texture = ExtResource("3_kevod")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelf"]
 position = Vector2(182, 62.5)
 shape = SubResource("RectangleShape2D_1no4i")
+
+[node name="Actionable" parent="Bookshelf" instance=ExtResource("4_ks3s2")]
+dialogue_resource = ExtResource("5_4lqxw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelf/Actionable"]
+position = Vector2(183, 66)
+shape = SubResource("RectangleShape2D_vircn")
 
 [node name="Player" parent="." instance=ExtResource("4_jd5gd")]
 position = Vector2(70, 105)
